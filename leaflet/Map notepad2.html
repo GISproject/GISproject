@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<link rel="stylesheet" href="leaflet.css" />
+	<script src="leaflet.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<title>My map</title>
+	
+    </head>
+
+    <body>
+		<div id="map" style="height: 500px"></div>
+		<script type="text/javascript">  
+		  var map = L.map('map').setView([37.8, -96], 4);
+		  
+		  L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.jpg', {
+               attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+               maxZoom: 12
+            }).addTo(map);
+			
+			function getColor(value) {
+}				return value > 20.1  ? '#d94701':
+					   value > 14.3  ? '#fd8d3c':
+					   value > 8.5   ? '#fdbe85':
+								     ? '#feedde';
+			}						
+									
+			function style(feature){
+				return {
+					fillColor: getColor(feature.properties.ALAND),
+					weight: 2,
+					opacity: 1,
+					color: 'white',
+					dashArray: '3',
+					fillOpacity: 0.9
+    };
+}
+
+function highlightFeature(e) {
+     var layer = e.target;
+     
+     // You can adjust the attribute values below to change the styles of features on mouseover
+     layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+     });
+                    
+     if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+     }
+}
+			
+			var geojson
+                        
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    }
+
+</script>
+</body>    
+</html>
+
